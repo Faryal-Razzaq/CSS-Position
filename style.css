@@ -1,0 +1,88 @@
+body {
+            font-family: Arial;
+            padding: 30px;
+            background: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            color: purple;
+        }
+
+        .section {
+            background: white;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 10px;
+        }
+
+        .box {
+            width: 120px;
+            padding: 20px;
+            margin: 10px;
+            background: lightblue;
+            text-align: center;
+        }
+
+
+        /* 1. STATIC */
+
+        .static {
+            position: static;
+        }
+
+
+        /* 2. RELATIVE */
+
+        .relative {
+            position: relative;
+            top: 20px;
+            left: 30px;
+            background: lightgreen;
+        }
+
+
+        /* 3. ABSOLUTE */
+
+        .card {
+            position: relative;
+            width: 250px;
+            height: 120px;
+            background: lightblue;
+            padding: 20px;
+        }
+
+        .badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: red;
+            color: white;
+            padding: 5px;
+        }
+
+
+        /* 4. FIXED */
+
+        .fixed {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            padding: 15px 20px;
+            background: purple;
+            color: white;
+            border: none;
+            border-radius: 20px;
+        }
+
+
+        /* 5. STICKY */
+
+        .sticky {
+            position: sticky;
+            top: 0;
+            padding: 20px;
+            background: orange;
+            text-align: center;
+            font-weight: bold;
+        }
