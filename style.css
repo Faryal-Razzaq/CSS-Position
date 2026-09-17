@@ -1,19 +1,23 @@
-body {
-            font-family: Arial;
+  body {
+            font-family: sans-serif;
             padding: 30px;
-            background: #f4f4f4;
+            background: #dff9ff;
         }
 
         h1 {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-weight: bold;
+            font-size: 40px;
             text-align: center;
             color: purple;
         }
 
         .section {
-            background: white;
+           background-color: white;
             padding: 20px;
             margin: 25px 0;
             border-radius: 10px;
+            animation: fadeIn 0.7s ease both;
         }
 
         .box {
@@ -22,6 +26,14 @@ body {
             margin: 10px;
             background: lightblue;
             text-align: center;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .box:hover,
+        .sticky:hover {
+            transform: translateY(-6px) scale(1.03);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+            border-radius: 10px;
         }
 
 
@@ -29,28 +41,162 @@ body {
 
         .static {
             position: static;
+            cursor: pointer;
         }
 
 
         /* 2. RELATIVE */
 
-        .relative {
-            position: relative;
-            top: 20px;
-            left: 30px;
-            background: lightgreen;
-        }
+
+.relative {
+   /* background: #0a2342; */
+   background-color: aquamarine;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+   top: 20px;
+    left: 50px;
+  border-radius: 50px;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  cursor: pointer;
+}
+
+.relative span {
+  /* font-size: 1.5rem; */
+  position: relative;
+  z-index: 2;
+}
+
+.relative::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: conic-gradient(
+    #0ff 0deg, 
+    #0a2342 120deg, 
+    #0ff 240deg
+  );
+  transition: all 0.6s ease;
+  opacity: 0;
+  transform: scale(0);
+}
+
+.relative:hover {
+  border-radius: 10px;
+  transform: rotate(15deg);
+}
+
+.relative:hover::before {
+  opacity: 0.5;
+  transform: scale(2);
+}
+
+
+
 
 
         /* 3. ABSOLUTE */
 
+        .absolute-intro {
+          text-align: center;
+        }
+
+        .card-grid {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 24px;
+          margin-top: 25px;
+        }
+
         .card {
             position: relative;
-            width: 250px;
-            height: 120px;
-            background: lightblue;
-            padding: 20px;
+          flex: 1 1 280px;
+          max-width: 320px;
+            height: 200px;
+            perspective: 1000px;
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.card:hover .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 24px;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  box-sizing: border-box;
+}
+
+.card-front {
+  position: absolute;
+  background: linear-gradient(135deg, #dff9ff, #82d9e8);
+  border: 2px solid #35aabd;
+  color: #12313a;
+}
+
+.card-front h3,
+.card-back h3,
+.card-front p,
+.card-back p {
+  margin: 6px 0;
+}
+
+.card-label {
+  position: absolute;
+  top: 16px;
+  left: 18px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #176575;
+}
+
+.card-back {
+  position: absolute;
+  background: linear-gradient(135deg, #542b82, #a84491);
+  color: white;
+  transform: rotateY(180deg);
+}
+
+.back-number {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  font-size: 2rem;
+  font-weight: bold;
+  opacity: 0.25;
+}
+
+.back-hint {
+  position: absolute;
+  bottom: 14px;
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
 
         .badge {
             position: absolute;
@@ -59,10 +205,67 @@ body {
             background: red;
             color: white;
             padding: 5px;
+            transition: transform 0.25s ease;
+        }
+
+        .card:hover .badge {
+            transform: rotate(8deg) scale(1.1);
         }
 
 
-        /* 4. FIXED */
+
+        /* 4. STICKY */
+
+        .sticky {
+            position: sticky;
+            top: 0;
+            padding: 20px;
+            background: orange;
+            text-align: center;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(128, 0, 128, 0.35);
+            }
+            50% {
+                box-shadow: 0 0 0 8px rgba(128, 0, 128, 0);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+         /* 5. FIXED */
+
+        .fixed-section{
+              background-color: white;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 10px;
+            cursor: pointer;
+        }
 
         .fixed {
             position: fixed;
@@ -73,16 +276,17 @@ body {
             color: white;
             border: none;
             border-radius: 20px;
+            cursor: pointer;
+            transition: transform 0.25s ease, background 0.25s ease;
+            animation: pulse 2s infinite;
         }
 
+        .fixed:hover {
+            transform: scale(1.08);
+            background: #6a0dad;
+        }
 
-        /* 5. STICKY */
-
-        .sticky {
-            position: sticky;
-            top: 0;
-            padding: 20px;
-            background: orange;
-            text-align: center;
-            font-weight: bold;
+        /* Name */
+        .name{
+            color: purple;
         }
